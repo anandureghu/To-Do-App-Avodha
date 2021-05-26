@@ -1,0 +1,7 @@
+html, .container-fluid, .container, .collapse, body, nav, .container, .jumbotron{
+    background-color: #222629;
+    color: white;
+}
+.jumbotron{
+    border: 1px groove;
+}

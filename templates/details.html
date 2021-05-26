@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+<title>{{ task.subject }} - {{ task.priority }}</title>
+
+{% endblock %}
+{% block content %}
+
+<div class="container">
+<div class="jumbotron jumbotron-fluid p-lg-5" style="position: relative; top: 100px; border-radius: 30px;">
+    <div class="container">
+      <h1 class="display-4">{{  task.subject }}</h1>
+      <p class="lead">{{ task.date }}</p>
+  <hr class="my-4">
+      <p class="lead">{{ task.priority }}</p>
+        
+      <div class="row mx-auto mt-lg-5">
+        
+        <div class="mr-auto" style="position: relative; bottom: 5px; left:80px;">
+          <button class="btn btn-outline-danger"  data-toggle="collapse" href="#confirmDelete" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Delete</button>
+        </div>
+    
+        <div class="mx-auto" style="position: relative; bottom: 5px;">
+            <a href="{% url 'todo_app:update' task.id %}"><button class="btn btn-info">Edit</button></a>
+          </div>
+
+    <!-- <form method="POST" action="{% url 'todo_app:update' task.id %}"> -->
+        <!-- {% csrf_token %} -->
+        <div class="ml-auto" style="position: relative; bottom: 5px; right:80px;">
+          <a href="/"><button class="btn btn-warning">In process</button></a>
+        </div>
+    <!-- </form> -->
+    
+      </div>
+    <br>
+      
+    </div>
+
+    <div class="collapse" id="confirmDelete">
+        <form method="POST" action="{% url 'todo_app:delete' task.id %}">
+        {% csrf_token %}
+        <div class="alert alert-warning" role="alert">
+            Confirm Delete! 
+            <button class="btn btn-outline-danger">
+                Delete
+              </button>
+          </div>
+        </form>
+      </div>
+
+  </div>
+</div>
+
+{% endblock %}
